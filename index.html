@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P1-M24</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6;}
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        .header { background-color: #4CAF50; color: white; text-align: center; padding: 10px; }
+        .dropdown { margin-bottom: 20px; }
+        .dropdown select {font-size: 1em; padding: 5px;}
+        .activity { margin-bottom: 20px; }
+         .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .content { display: none; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; }
+         table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+         span[style*="color: red;"] {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function updateActivities() {
+             // Obtenemos el tiempo seleccionado del menú desplegable
+             const selectedTime = document.getElementById('class-time').value;
+             // Obtenemos los elementos HTML de las actividades y pasos que vamos a manipular
+            const activity2 = document.getElementById('activity-2');
+             const activity4 = document.getElementById('activity-4');
+            const pasos6y7act4 = document.querySelectorAll('#activity_4_content tr:nth-child(n+7):nth-child(-n+8)');
+
+            // Lógica para clases de 45 minutos
+            if (selectedTime === '45') {
+                // Ocultamos la actividad 2
+                activity2.style.display = 'none';
+                  // Aseguramos que los pasos 6 y 7 de la actividad 4 se muestren
+                  pasos6y7act4.forEach(element => {
+                    element.style.display = 'table-row';
+                });
+                 // Aseguramos que la actividad 4 se muestre
+                  if (activity4) activity4.style.display = 'block';
+
+
+            // Lógica para clases de 40 minutos
+            } else if (selectedTime === '40') {
+                // Ocultamos la actividad 2
+                activity2.style.display = 'none';
+                  // Ocultamos la actividad 4
+                  if (activity4) activity4.style.display = 'none';
+
+             // Lógica para clases de 50 minutos (o cualquier otro valor)
+            } else {
+                // Mostramos la actividad 2
+                activity2.style.display = 'block';
+                  // Aseguramos que los pasos 6 y 7 de la actividad 4 se muestren
+                  pasos6y7act4.forEach(element => {
+                    element.style.display = 'table-row';
+                });
+                  // Aseguramos que la actividad 4 se muestre
+                 if (activity4) activity4.style.display = 'block';
+
+            }
+             // Actualizamos el texto para mostrar el tiempo efectivo de clase
+            document.getElementById('selected-time').innerText = `Tiempo efectivo de clase: ${selectedTime} minutos`;
+        }
+
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Playbook-P1-M24</h1>
+    </div>
+    <div class="container">
+        <div class="dropdown">
+            <label for="class-time">Tiempo efectivo de Clase:</label>
+            <select id="class-time" onchange="updateActivities()">
+                <option value="50">50 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="40">40 minutos</option>
+            </select>
+        </div>
+        <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+        <!-- Actividad 0 -->
+         <div id="activity-0" class="activity" data-time="N/A">
+            <div class="banner" onclick="toggleContent('activity_0_content')">
+                <div class="title">🔍 Actividad 0: Revisión de Misión</div>
+                  <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                   <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Verificación inicial del equipo y materiales necesarios para completar la misión.
+                </div>
+            </div>
+            <div id="activity_0_content" class="content">
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                           <strong>Paso 1:</strong> Proyectar la diapositiva 1: "Materiales y preparación de la misión". Verificar que todos los materiales estén disponibles:
+                            <ul>
+                                <li>Dispositivos con Scratch Jr. (app o web).</li>
+                                <li>Magic Boards.</li>
+                            </ul>
+                        </td>
+                        <td style="padding: 10px; vertical-align: top;">N/A</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+                <!-- Actividad 1 -->
+        <div id="activity-1" class="activity" data-time="2">
+            <div class="banner" onclick="toggleContent('activity_1_content')">
+                <div class="title">🎉 Actividad 1: Saludo y Ritual Gnius Club ⏰ Tiempo: 2 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Bienvenida al grupo, evaluación del estado de ánimo, agradecimiento y presentación de los objetivos de la misión.
+                </div>
+            </div>
+            <div id="activity_1_content" class="content">
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                         <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                         <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                     </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (0,5 minutos):</strong> Proyectar Diapositiva 2 “Gnius Club”. Saludar a los estudiantes con entusiasmo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Hola, Genios! 🌟 ¡Bienvenidos a una nueva misión de trabajo en equipo! Hoy vamos a crear proyectos increíbles en Scratch Jr., trabajando en parejas y usando la lógica para construir nuestras historias. ¿Están listos para la colaboración y la diversión?”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (0,5 minutos):</strong> Proyectar Diapositiva 3 “¿Cómo están?”. Utilizar gestos para evaluar el estado de ánimo de los estudiantes.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Antes de empezar, quiero saber cómo están. Si están emocionados y listos para colaborar, choquen sus cinco con el compañero más cercano. 🖐️ Si sienten que necesitan un poquito más de concentración, pónganse las manos en la cabeza como si fueran creativos pensando en ideas.”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (0,5 minutos):</strong> Proyectar Diapositiva 4 y guiar a los estudiantes en el ritual de agradecimiento.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Ahora, juntemos nuestras manos y agradezcamos por el aprendizaje de hoy. Todos juntos decimos: ‘¡Gracias por estar aquí, Genios! Hoy vamos a tener un gran día de colaboración, aprendizaje y diversión.’”</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 4 (0,5 minutos):</strong> Proyectar Diapositiva 5 “Objetivos de la Misión” y explicar los objetivos de la clase.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Hoy, tenemos tres objetivos para nuestro trabajo en equipo: 1) Aprender a usar los bloques de movimiento y sonido como si fueran piezas de un juego, 2) Crear una historia lógica en equipo usando la lógica de estos bloques y 3) Planificar nuestras animaciones en equipo usando paper programming. ¡Vamos a crear proyectos juntos!”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- Actividad 2 -->
+        <div id="activity-2" class="activity" data-time="2.5">
+             <div class="banner" onclick="toggleContent('activity_2_content')">
+                <div class="title">💡 Actividad 2: Innovación del Día ⏰ Tiempo: 2.5 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Exploración de Osmo Coding Awbie, una herramienta que conecta bloques físicos con la programación digital.
+                </div>
+            </div>
+            <div id="activity_2_content" class="content">
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (0,5 minutos):</strong> Proyectar Diapositiva 6 “Innovación del Día: Osmo Coding Awbie”. Explicar que explorarán una herramienta que conecta bloques físicos con la programación digital en una tableta.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Hoy vamos a conocer Osmo Coding Awbie, una herramienta increíble que usa bloques reales para programar personajes en una tableta. Es como si le diéramos órdenes a un personaje usando bloques de verdad, para luego verlo en la pantalla. ¡Prepárense para ver esta magia en acción!”</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (2 minutos):</strong> Proyectar Diapositiva 7 y reproducir un video corto que demuestre el Osmo Coding Awbie en acción, mostrando cómo los bloques físicos se traducen en acciones digitales, mientras se narra el siguiente diálogo: "Osmo Coding Awbie. Es un juego donde, al igual que en Scratch Jr., se utilizan bloques para programar a un personaje. La diferencia es que, en lugar de usar bloques digitales en la pantalla, aquí los bloques son físicos, como piezas de un rompecabezas. El personaje principal, Awbie, ama las fresas, y para ayudarlo a recogerlas, los jugadores colocan estos bloques frente a una tableta, que los 'lee' y traduce las órdenes en movimientos para Awbie. Es una forma diferente de practicar lo que ya hacemos en Scratch Jr.: pensar en pasos lógicos y resolver problemas. Este producto combina la programación con el juego físico, mostrando cómo las ideas que aprendemos en clase también se pueden aplicar de otras maneras innovadoras. Ahora, ¡vamos a ver el video para entender mejor cómo funciona!", Luego guiar la reflexión con preguntas.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¿Qué tal, Genios? ¿No es asombroso cómo los bloques físicos le dan vida a Awbie? Ahora piensen: ¿cómo usarían esa misma lógica en Scratch Jr.? ¿Cómo podemos combinar los bloques de movimiento y sonido para que nuestros personajes hagan acciones geniales? ¡Recordemos que en Scratch Jr., como en Osmo, la lógica es la clave para crear!"</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+                     <!-- Actividad 3 -->
+        <div id="activity-3" class="activity" data-time="7">
+            <div class="banner" onclick="toggleContent('activity_3_content')">
+                <div class="title">🧠 Actividad 3: Brain Gym ⏰ Tiempo: 7 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Exploración de la lógica de la planificación en equipo, comunicación y uso de bloques de movimiento y sonido.
+                </div>
+            </div>
+            <div id="activity_3_content" class="content">
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (0,5 minutos):</strong> Proyectar Diapositiva 8 “Brain Gym: Equipos Creativos” y explicar la dinámica de atención para la actividad.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Hola, Genios de la colaboración! 🧠 Hoy vamos a activar nuestras mentes para crear proyectos increíbles en equipo. Vamos a aprender a planificar juntos como los grandes diseñadores de historias, y les tengo un secreto: en la explicación de hoy, hay un Easter Egg oculto para que lo descubran. ¡Atención a la lógica, equipo!”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (1 minuto):</strong> Proyectar Diapositiva 9 “La Lógica de la Planificación en Equipo”. Explicar que planificar juntos es como crear un mapa para la historia de un equipo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Imaginemos que estamos creando un mapa para una aventura increíble. Antes de empezar a construir, debemos planear la ruta de nuestro viaje. ¿Dónde iniciarán nuestros personajes? ¿Cómo se moverán juntos? La planificación es la base para que nuestros proyectos en equipo tengan sentido y sean geniales.”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (1 minuto):</strong> Proyectar Diapositiva 10 “Organizando las Ideas en Equipo”. Explicar cómo un equipo debe definir los personajes, los escenarios, las acciones y los sonidos para darle vida a la historia.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Ahora, veamos los elementos de la historia en equipo: - Primero definan qué personajes participarán, y qué hará cada uno. - Luego, decidan el escenario donde se desarrollará su historia. - Piensen en las acciones: ¿Qué harán juntos? Y por último, ¡la banda sonora!: ¿Qué sonidos expresarán sus emociones y momentos importantes? Recuerden que todo debe estar conectado en un orden lógico.”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                       <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 4 (1 minuto):</strong> Proyectar Diapositiva 11 “Comunicación: La Clave del Éxito en Equipo” y explicar cómo cada miembro del equipo es importante y cómo la comunicación hará que todo sea más fácil.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Piensen que son un equipo de producción de una gran animación. ¿Qué creen que es fundamental en un buen equipo de trabajo? ¡La comunicación! Todos deben hablar, escuchar y compartir ideas para que la historia en equipo tenga sentido. Así, los bloques de movimiento y sonido cobrarán vida y todos estarán en la misma sintonía.”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 5 (1 minuto):</strong> Proyectar Diapositiva 12 “La Lógica en los Movimientos y Sonidos”. Explicar cómo los bloques de movimiento y sonido dan sentido a las acciones de los personajes en equipo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Veamos cómo la lógica se conecta con las acciones de sus personajes: - El bloque ‘<strong>Avanzar</strong>’ nos dice el camino que sigue cada personaje. - El bloque ‘<strong>Girar</strong>’ nos permite cambiar de dirección y crear patrones de movimiento. - Y con los bloques de sonido, podemos darle vida a la historia con efectos y voces de personajes. Al combinar los bloques, creamos la lógica que guía a nuestros personajes. ¡Cada acción tiene un propósito!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 6 (2 minutos):</strong> Proyectar Diapositiva 13 “Paper Programming: Planificando en Equipo”. Explicar cómo se pueden usar listas o diagramas para planificar la secuencia lógica de la historia.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Recordemos que una buena historia necesita un orden, un camino que seguir. ¿Cómo hacemos que nuestras historias sean lógicas? ¡Con la planificación! Dibújenlas en papel. - Anoten los pasos que harán cada uno de los personajes: ¡primero esto, luego esto, y después aquello! - Usen flechas para indicar el camino que seguirán en la pantalla. Así, la historia de su equipo tendrá sentido para todos”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 7 (1 minuto):</strong> Proyectar Diapositiva 14 “Ejemplos de Planificación en Equipo”. Mostrar cómo podemos usar el paper programming para crear una historia en equipo, pensando en personajes y acciones que tengan sentido y una narrativa lógica.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Vean cómo podemos planificar nuestras historias en equipo con el paper programming: - En la primera escena, el personaje 1 saluda y avanza, luego el personaje 2 llega y suena un ‘Pop’. - En la segunda escena, los dos caminan juntos y cantan una canción. ¡Cada paso está conectado, como una obra de teatro en equipo!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 8 (0,5 minutos):</strong> Sin diapositiva. Guiar a los estudiantes a pensar en cómo sus personajes colaboran y cómo el paper programming los ayudará a trabajar en equipo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Ahora que saben cómo planificar en equipo, imaginen sus propias historias: ¿Qué aventuras crearán? ¿Cómo harán para que todos los personajes se muevan juntos en Scratch Jr.? Recuerden que la lógica y la planificación en equipo son sus mejores herramientas. ¡Usen su creatividad para diseñar historias geniales!”</td>
+                    </tr>
+                     <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 9 (0,5 minutos):</strong> Proyectar Diapositiva 15 “Revisión de Objetivos: Lógica en Equipo” para reforzar el concepto de la lógica en la planeación y preparación para el trabajo colaborativo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Excelente trabajo, Genios de la colaboración! Hoy aprendimos que para crear historias increíbles en Scratch Jr. necesitamos usar la lógica, la planificación en equipo y usar el paper programming como nuestra guía. ¡Ahora, vamos a poner en marcha nuestras ideas y a construir historias geniales en equipo! ¿Están listos para la aventura?”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- Actividad 4 -->
+        <div id="activity-4" class="activity" data-time="10">
+            <div class="banner" onclick="toggleContent('activity_4_content')">
+                <div class="title">🧠 Actividad 4: Brain Vitamin ⏰ Tiempo: 10 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Ejercicio para activar la lógica en movimiento y la coordinación en equipo para planificar proyectos.
+                </div>
+            </div>
+            <div id="activity_4_content" class="content">
+                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (5 minutos):</strong> Proyectar Diapositiva 14 “Brain Vitamin: La Lógica en Movimiento” y explicar la actividad paso a paso.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Hola, Genios de la colaboración! 💪 Vamos a activar nuestras mentes y cuerpos con un ejercicio que nos ayudará a planificar y trabajar juntos como un gran equipo. Hoy, ¡la lógica estará en movimiento!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (3 minutos):</strong> Proyectar Diapositiva 15 “Secuencia Lógica en Equipo” y explicar cómo coordinar sus movimientos y la voz en un patrón establecido.</td>
+                        <td style="padding: 10px; vertical-align: top;">"""¡Ahora, vamos a crear nuestra propia secuencia de historia con nuestros cuerpos! Sigan estas instrucciones: - En equipo, decidan una secuencia de tres movimientos que representen un inicio, desarrollo y final de una escena: como un paso adelante, un giro y un saludo. - Practiquen esta secuencia con movimientos y sonidos sincronizados, como si fueran personajes que se mueven en una historia de Scratch Jr. ¡La lógica es la clave!”""</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (2 minutos):</strong> Sin diapositiva. Reflexionar con los estudiantes: ¿Cómo se coordinaron los movimientos en equipo? ¿Qué fue lo más difícil? ¿Cómo les ayudó la comunicación a crear la secuencia de forma lógica?</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Excelente trabajo, Genios! ¿Qué aprendieron al crear la secuencia de movimiento en equipo? ¿Cómo lograron que todos se movieran al unísono? ¿Cómo les ayudó la comunicación y la planificación a lograr esta coreografía en equipo? Reflexionemos sobre cómo podemos aplicar esta lógica en nuestros proyectos de Scratch Jr.”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+                <!-- Actividad 5 -->
+        <div id="activity-5" class="activity" data-time="2">
+            <div class="banner" onclick="toggleContent('activity_5_content')">
+                <div class="title">🤝 Actividad 5: Team Gnius ⏰ Tiempo: 2 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Formación de equipos para compartir ideas y crear proyectos.
+                </div>
+            </div>
+            <div id="activity_5_content" class="content">
+                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (0,5 minutos):</strong> Proyectar la Diapositiva 16 “Team Gnius: ¡Unión de Talentos!”. Explicar que formarán equipos para compartir sus ideas y crear proyectos.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Genios creativos, llegó el momento de unir sus talentos! 🤝 Formen equipos de 2 para crear proyectos increíbles en Scratch Jr. Juntos, vamos a explorar y planificar cómo nuestras ideas pueden cobrar vida en equipo. ¿Listos para esta aventura de colaboración?”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (0,5 minutos):</strong> Proyectar la Diapositiva 17 “Cronómetro de Equipo: ¡A Formar Grupos!”. Utilizar un cronómetro visual de 30 segundos.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡El tiempo corre, Genios! Tienen 30 segundos para encontrar a su compañero y formar su equipo. ¡Busquen con quien quieren crear una historia mágica y prepárense para la planeación!”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (0,5 minutos):</strong> Proyectar la Diapositiva 18 “¡Magic Tablets Listas para la Acción!”. Explicar cómo las Magic Tablets les ayudarán a anotar y planificar su trabajo en equipo.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Líderes de equipo, vengan a recoger su Magic Tablet! Esta será su bitácora de planeación. ¡Úsenla para escribir sus ideas, dibujar sus bocetos y organizar su guion! Recuerden que en este momento cada herramienta es mágica para crear lo imposible”</td>
+                    </tr>
+                     <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 4 (0,5 minutos):</strong> Proyectar la Diapositiva 19 “Recogida de Herramientas: ¡A Planificar!”. Utilizar un cronómetro visual de 30 segundos para motivar a los estudiantes a que recojan el material de forma rápida.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Tienen 30 segundos, Genios! Recojan sus Magic Tablets y prepárense para planificar sus proyectos en equipo. ¡El trabajo en equipo empieza ahora!”</td>
+                    </tr>
+                 </table>
+            </div>
+        </div>
+               <!-- Actividad 6 -->
+        <div id="activity-6" class="activity" data-time="15">
+            <div class="banner" onclick="toggleContent('activity_6_content')">
+                <div class="title">🚀 Actividad 6: Challenge ⏰ Tiempo: 15 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Planificación de proyectos en equipo usando paper programming y trabajando con diferentes niveles de dificultad.
+                </div>
+            </div>
+            <div id="activity_6_content" class="content">
+                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (1 minuto):</strong> Proyectar la Diapositiva 20 “Paper Programming: ¡El Guion en Equipo!”. Recordar cómo este método ayuda a organizar ideas antes de programar en Scratch Jr.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Genios de la colaboración, es hora de usar el paper programming! Recuerden que es como dibujar el plano de sus proyectos en equipo. Con esta guía, cada paso será más claro, ¡y harán sus historias y juegos aún más geniales!”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (1 minuto):</strong> Proyectar la Diapositiva 21 “Retos de Colaboración”. Detallar las instrucciones, <span style="color: red; font-weight: bold;">condiciones</span> y <span style="color: red; font-weight: bold;">objetivos</span> para cada nivel (Rookie, Master, Hacker).</td>
+                        <td style="padding: 10px; vertical-align: top;">"""Aquí están los retos para su trabajo en equipo, Genios: <br><br> <strong>Nivel Rookie (Básico): 'El Cuento en Pareja'</strong> <br><br> Nombre del Reto: '¡El Cuento de Dos!' <br><br> <span style="color: red; font-weight: bold;">Objetivo:</span> Crear un cuento corto en Scratch Jr. donde cada miembro del equipo se encarga de animar un personaje diferente en una misma escena. <br><br> <strong>Instrucciones:</strong> Elige un tema para el cuento (ej: un viaje en barco, una visita al zoológico). Cada miembro del equipo elige un personaje diferente y lo inserta en el proyecto. Cada miembro del equipo programa a su personaje para que realice una acción sencilla y coherente con el cuento. Combina el trabajo de ambos en un solo proyecto para crear el cuento completo.  <br><br>  <span style="color: red; font-weight: bold;">Condiciones:</span> Cada miembro del equipo debe programar a un personaje diferente. Las acciones de cada personaje deben tener relación con el tema del cuento. Todos los personajes deben aparecer en la misma escena. <br><br>  <span style="color: red; font-weight: bold;">Consejo:</span> Antes de programar, ¡planifiquen juntos la historia y las acciones de cada personaje!  <br><br> <strong>Nivel Master (Intermedio): 'El Juego en Pareja'</strong> <br><br> Nombre del Reto: '¡El Juego de Dos!' <br><br> <span style="color: red; font-weight: bold;">Objetivo:</span> Crear un juego sencillo en Scratch Jr. donde cada miembro del equipo se encarga de programar una parte diferente del juego. <br><br>  <strong>Instrucciones:</strong> Decidan qué tipo de juego quieren crear (ej: un juego de persecución, un juego de laberinto). Cada miembro del equipo se encarga de programar una parte del juego: Un estudiante se encarga del personaje principal y su movimiento. El otro estudiante se encarga de los obstáculos o elementos interactivos del juego. Combina todas las partes del juego para crear el juego completo. <br><br> <span style="color: red; font-weight: bold;">Condiciones:</span> Cada miembro del equipo debe programar una parte diferente del juego. Ambas partes del juego deben interactuar entre sí de manera lógica. Debe existir una condición de victoria para el juego (llegar a la meta, conseguir un puntaje, etc.). <br><br> <span style="color: red; font-weight: bold;">Consejo:</span> ¡Comuníquense mucho y asegúrense de que las dos partes del juego se complementen!  <br><br> <strong>Nivel Hacker (Avanzado): 'La Simulación en Pareja'</strong> <br><br> Nombre del Reto: '¡La Simulación de Dos!' <br><br>  <span style="color: red; font-weight: bold;">Objetivo:</span> Crear una simulación en Scratch Jr. donde cada miembro del equipo se encarga de animar diferentes elementos de una misma escena, por ejemplo, la simulación de un acuario, un espacio exterior, etc.  <br><br>  <strong>Instrucciones:</strong> Decidan qué tipo de simulación quieren crear (ej: una granja, un acuario, una estación espacial). Cada miembro del equipo se encarga de programar una parte de la simulación: Un estudiante se encarga del movimiento de uno o varios personajes o elementos principales. El otro se encarga de animar otros elementos que le den vida a la simulación, como sonidos de fondo o elementos interactivos. Combina todo el trabajo en un solo proyecto para crear la simulación completa. <br><br> <span style="color: red; font-weight: bold;">Condiciones:</span> Cada miembro del equipo debe programar diferentes partes de la simulación. Todos los elementos deben moverse y funcionar de manera coherente con la temática. El concepto de la simulación debe ser claro. <br><br> <span style="color: red; font-weight: bold;">Consejo:</span> ¡Planifiquen muy bien qué hará cada uno y recuerden que deben trabajar en equipo!"""</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (1,5 minutos):</strong> Proyectar la Diapositiva 22 “Planificación en Equipo: El Mapa de la Creación”. Mostrar un ejemplo visual de cómo organizar los pasos en una Magic Tablet.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Es hora de planificar en equipo! Como si fueran diseñadores, dibujen en la Magic Tablet el mapa de su historia o juego. Detallen los pasos y asignen las tareas a cada miembro del equipo. ¡Así, todo será más fácil al programar en Scratch Jr.!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                       <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 4 (10 minutos):</strong> Proyectar la Diapositiva 23 “Escribiendo Juntos su Paper Programming”. Temporizador visual de 10 minutos para organizar el trabajo y plasmar sus ideas.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Genios creativos, manos a la obra! ✍️ Tienen 10 minutos para escribir su paper programming en equipo. Usen sus Magic Tablets para organizar las acciones, los movimientos y los sonidos de sus personajes. ¡La planeación detallada es la base para que sus historias sean geniales!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 5 (2 minutos):</strong> Proyectar la Diapositiva 24 “Revisión Lógica con el Patito”. Recordar cómo usar el método para verificar que todo en la historia tenga sentido.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Es hora de usar el método del Patito de Goma! Por turnos, explíquenle su historia a un patito imaginario. Asegúrense de que cada movimiento, sonido y paso de la historia tenga sentido lógico, y que la historia en equipo esté lista para brillar. ¡Que el patito sea su mejor aliado!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 6 (1 minuto):</strong> Proyectar la Diapositiva 25 “Intercambio de Roles: Diferentes Puntos de Vista”. Motivar a los estudiantes a cambiar sus roles para que todos practiquen la revisión.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Ahora cambien de lugar y de roles! Quien explicó antes, ahora escucha, y quien escuchó ahora explica. Al cambiar de rol, podrán entender mejor las ideas de sus compañeros. ¡Así, tendrán diferentes perspectivas sobre cómo mejorar su proyecto!”</td>
+                    </tr>
+                     <tr style="border-bottom: 1px solid #ddd;">
+                         <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 7 (2 minutos):</strong> Proyectar la Diapositiva 26 “Ajustes en Equipo: Uniendo Ideas”. Dar tiempo a los equipos para discutir y mejorar su trabajo.</td>
+                         <td style="padding: 10px; vertical-align: top;">“¡Tómense un momento para que los equipos revisen su proyecto como si fueran directores que buscan la perfección en equipo! ¿Qué partes del guion son claras y qué partes podrían mejorar? ¿Cómo pueden hacer que sus personajes colaboren mejor? ¡Trabajen juntos y pulan sus ideas!”</td>
+                    </tr>
+                     <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 8 (0,5 minutos):</strong> Proyectar la Diapositiva 27 “¡Mon-e a la Planeación!”. Celebrar el logro del equipo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Grandioso trabajo en equipo, Genios! Han completado el paper programming y están listos para usar Scratch Jr. ¡Se merecen su Mon-e por su esfuerzo y planeación! ¡Hoy han demostrado ser unos grandes creadores y colaboradores!”</td>
+                   </tr>
+                   <tr>
+                         <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 9 (0,5 minutos):</strong> Proyectar la Diapositiva 28 “Objetivos de Equipo Logrados”. Recordar lo aprendido y como los ayudará para el proyecto final.</td>
+                        <td style="padding: 10px; vertical-align: top;">“Hoy, descubrieron cómo la planeación es fundamental para crear historias asombrosas en Scratch Jr. Han aprendido a trabajar juntos y han dado forma a sus ideas con el paper programming. ¡Con esto estarán listos para brillar aún más en sus proyectos colaborativos!”</td>
+                   </tr>
+                </table>
+            </div>
+        </div>
+         <!-- Actividad 7 -->
+        <div id="activity-7" class="activity" data-time="3.5">
+            <div class="banner" onclick="toggleContent('activity_7_content')">
+                <div class="title">🥚 Actividad 7: Easter Egg ⏰ Tiempo: 3.5 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                   Reto para descubrir un dato sobre la planificación de historias en equipo.
+                </div>
+            </div>
+            <div id="activity_7_content" class="content">
+                 <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (1 minuto):</strong> Proyectar la Diapositiva 29 “¡El Momento del Código Secreto!”. Presentar el momento del Easter Egg como un reto para descubrir un dato sobre la planificación de historias en equipo.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Genios de la colaboración, llegó la hora del Easter Egg! 🥚 Ahora vamos a poner a prueba su memoria. ¿Recuerdan que hablamos de un secreto que usan algunos equipos para escribir sus guiones? ¡Preparen sus mentes para esta pregunta especial!”</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                       <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (2 minutos):</strong> Proyectar la Diapositiva 30 “La Pregunta: ¡El Secreto del Guion!”. Formular la pregunta y guiar a los estudiantes a recordar el dato curioso.</td>
+                         <td style="padding: 10px; vertical-align: top;">“Aquí está su pregunta: ¿Cómo hacen algunos equipos para planificar sus historias, sin usar palabras? ¡Piensen como directores de cine y recuerden lo que hablamos!”</td>
+                    </tr>
+                     <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 3 (0,5 minutos):</strong> Proyectar la Diapositiva 31 “¡La Respuesta: Dibujos en el Guion!”. Mostrar la respuesta correcta e integrar la información con el aprendizaje de la clase.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Excelente, Genios! La respuesta correcta es… ¡Usando símbolos o dibujos en lugar de palabras! Como unos verdaderos creadores, han descubierto cómo los guiones son más que letras, también son mapas para que las historias cobren vida. ¡Sigan explorando la lógica y el trabajo en equipo!”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+         <!-- Actividad 8 -->
+        <div id="activity-8" class="activity" data-time="3">
+            <div class="banner" onclick="toggleContent('activity_8_content')">
+                <div class="title">🏅 Actividad 8: Honor the Lab ⏰ Tiempo: 3 minutos</div>
+                 <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+                <div class="subtitle" style="margin-top: 5px; font-size: 0.9em; color: #e0e0e0;">
+                    Reflexión sobre la lógica en equipo y organización del espacio de trabajo.
+                </div>
+            </div>
+             <div id="activity_8_content" class="content">
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+                    <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                        <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                        <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Maestro</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                         <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 1 (1 minuto):</strong> Proyectar la Diapositiva 32 “Reflexión Final: Lógica en Equipo”. Guiar a los estudiantes en una breve reflexión grupal sobre lo aprendido y logrado durante la clase.</td>
+                        <td style="padding: 10px; vertical-align: top;">“¡Genios de la colaboración, hemos llegado al final de esta aventura! 🚀 Reflexionemos juntos: - Hoy hemos explorado cómo usar los bloques de movimiento y sonido como piezas de un gran rompecabezas lógico. - Hemos planificado nuestras historias en equipo como si fuéramos directores de cine, creando guiones increíbles con paper programming. ¡Estoy muy orgulloso del esfuerzo y la creatividad de cada uno de ustedes! 🌟"</td>
+                    </tr>
+                     <tr>
+                        <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;"><strong>Paso 2 (2 minutos):</strong> Proyectar la Diapositiva 33 “Organización: ¡Laboratorio Listo para la Acción!”. Guiar a los estudiantes a recoger todos los materiales utilizados y organizar el espacio.</td>
+                         <td style="padding: 10px; vertical-align: top;">“Ahora, vamos a preparar el laboratorio para nuestras próximas misiones creativas. - Reúnan sus Magic Tablets y los materiales de trabajo, asegurándose que todo esté en orden. - Asegúrense de que su espacio de trabajo esté limpio y listo para que otros también puedan crear y aprender. ¡Recuerden que un ambiente organizado inspira a la creatividad!”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+   </div>
+        <!-- Scripts adicionales -->
+    <script>
+        // Aquí puedes agregar más scripts si es necesario
+    </script>
+</body>
+</html>
